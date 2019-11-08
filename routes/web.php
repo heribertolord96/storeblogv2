@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+//Routes
+Route::middleware(['auth'])->group(function(){
+    Route::post('roles/store')->name('roles.store')
+    ->middleware('permission:roles.create');
+
+});
+//Roles
